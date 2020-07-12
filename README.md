@@ -1,3 +1,3 @@
 # OpenGL-projects
 
-Re-learning OpenGL with GLFW
+Re-learning OpenGL
