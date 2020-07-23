@@ -18,6 +18,7 @@ class Launcher:
         glutSwapBuffers()
 
     def loop(self):
+        glutIdleFunc(self.display_func)
         glutDisplayFunc(self.display_func)
         glutMainLoop()
 
