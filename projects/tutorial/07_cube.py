@@ -4,7 +4,7 @@ from projects.launcher import *
 w, h = 500, 500
 rot_x, rot_y, rot_z = 0.0, 0.0, 0.0
 
-cube_vertexs = [
+cube_vertices = [
     [[0, 0, 0], [1, 0, 0], [1, 1, 0], [0, 1, 0]],  # front
     [[0, 1, 0], [0, 1, 1], [1, 1, 1], [1, 1, 0]],  # above
     [[0, 0, 0], [0, 0, 1], [1, 0, 0], [1, 0, 1]],  # below
@@ -33,7 +33,7 @@ def cube(size=(100, 100, 100)):
 
     glColor3f(0.25, 0.5, 0.75)
     glBegin(GL_QUADS)
-    for face in cube_vertexs:
+    for face in cube_vertices:
         for vertex in face:
             glVertex(vertex[0] * size[0],
                      vertex[1] * size[1],
