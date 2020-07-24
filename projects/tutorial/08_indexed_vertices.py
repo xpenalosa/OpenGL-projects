@@ -77,6 +77,4 @@ def display_func():
 
 
 if __name__ == "__main__":
-    launcher = Launcher(display_func, (w, h))
-    # enable_lighting()
-    launcher.loop()
+    launcher = Launcher(display_func, (w, h)).loop()
