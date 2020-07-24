@@ -2,8 +2,6 @@
 from projects.launcher import *
 
 w, h = 500, 500
-rot_x, rot_y, rot_z = 0.0, 0.0, 0.0
-
 cube_vertices = [
     (1, 0, 0),
     (1, 1, 0),
@@ -22,14 +20,6 @@ cube_surfaces = [
     (1, 5, 7, 2),
     (4, 0, 3, 6)
 ]
-cube_colors = [
-    (0.5, 1.0, 0.75),
-    (0.25, 0.0, 1.0),
-    (1.0, 1.0, 0.0),
-    (0.75, 0.25, 0.25),
-    (1.0, 1.0, 1.0),
-    (0.5, 0.5, 1.0)
-]
 
 
 def rotate_3d_object(size, rx=0.0, ry=0.0, rz=0.0):
@@ -41,20 +31,12 @@ def rotate_3d_object(size, rx=0.0, ry=0.0, rz=0.0):
 
 
 def cube(size=(100, 100, 100)):
-    global rot_x, rot_y, rot_z
-    rot_x = rot_x + 0.01
-    rot_y = rot_y + 0.01
-    rot_z = rot_z + 0.01
-
     glTranslate(w // 2 - size[0] / 2, h // 2 - size[1] / 2, 0)
-    rotate_3d_object(size, rot_x, rot_y, rot_z)
+    rotate_3d_object(size, 30, 0, 0)
+    rotate_3d_object(size, 0, -45, 0)
 
-    glColor3f(0.25, 0.5, 0.75)
     glBegin(GL_QUADS)
-    x = 0
     for surface in cube_surfaces:
-        glColor(cube_colors[x])
-        x += 1
         for index in surface:
             glVertex3f(*[v * s for v, s in zip(cube_vertices[index], size)])
     glEnd()
@@ -76,5 +58,18 @@ def display_func():
     cube((100, 100, 100))
 
 
+def enable_lighting(light_pos):
+    glEnable(GL_DEPTH_TEST)
+    glEnable(GL_LIGHTING)
+    glEnable(GL_BLEND)
+    glLightfv(GL_LIGHT0, GL_POSITION, [*light_pos, 1])
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, [0.5, 0.5, 0.5, 1])
+    glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 0.001)
+    glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 0.005)
+    glEnable(GL_LIGHT0)
+
+
 if __name__ == "__main__":
-    Launcher(display_func, (w, h)).loop()
+    launcher = Launcher(display_func, (w, h))
+    enable_lighting(light_pos=[w/4, h*3/5, 0])
+    launcher.loop()
