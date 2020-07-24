@@ -18,9 +18,9 @@ def square(size=(100, 100), pos=(0, 0)):
 def triangle(size=(100, 100), pos=(0, 0)):
     glColor3f(0.8, 0, 0.25)
     glBegin(GL_TRIANGLES)
-    glVertex2f(pos[0], pos[1])
-    glVertex2f(pos[0] + size[0] // 2, pos[1] + size[1])
     glVertex2f(pos[0] + size[0], pos[1])
+    glVertex2f(pos[0] + size[0] // 2, pos[1] + size[1])
+    glVertex2f(pos[0], pos[1])
     glEnd()
     glLoadIdentity()
 

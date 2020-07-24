@@ -5,12 +5,30 @@ w, h = 500, 500
 rot_x, rot_y, rot_z = 0.0, 0.0, 0.0
 
 cube_vertices = [
-    [[0, 0, 0], [0, 1, 0], [1, 1, 0], [1, 0, 0]],  # back
-    [[0, 1, 0], [0, 1, 1], [1, 1, 1], [1, 1, 0]],  # above
-    [[0, 0, 0], [1, 0, 0], [1, 0, 1], [0, 0, 1]],  # below
-    [[1, 0, 0], [1, 1, 0], [1, 1, 1], [1, 0, 1]],  # right
-    [[0, 0, 0], [0, 0, 1], [0, 1, 1], [0, 1, 0]],  # left
-    [[0, 0, 1], [1, 0, 1], [1, 1, 1], [0, 1, 1]]   # front
+    (1, 0, 0),
+    (1, 1, 0),
+    (0, 1, 0),
+    (0, 0, 0),
+    (1, 0, 1),
+    (1, 1, 1),
+    (0, 0, 1),
+    (0, 1, 1)
+]
+cube_surfaces = [
+    (0, 1, 2, 3),
+    (3, 2, 7, 6),
+    (6, 7, 5, 4),
+    (4, 5, 1, 0),
+    (1, 5, 7, 2),
+    (4, 0, 3, 6)
+]
+cube_colors = [
+    (0.5, 1.0, 0.75),
+    (0.25, 0.0, 1.0),
+    (1.0, 1.0, 0.0),
+    (0.75, 0.25, 0.25),
+    (1.0, 1.0, 1.0),
+    (0.5, 0.5, 1.0)
 ]
 
 
@@ -34,13 +52,11 @@ def cube(size=(100, 100, 100)):
     glColor3f(0.25, 0.5, 0.75)
     glBegin(GL_QUADS)
     x = 0
-    for face in cube_vertices:
-        glColor(x, 0.0, 0.0)
-        x += 1/6
-        for vertex in face:
-            glVertex(vertex[0] * size[0],
-                     vertex[1] * size[1],
-                     vertex[2] * size[2])
+    for surface in cube_surfaces:
+        for index in surface:
+            glColor(cube_colors[x])
+            glVertex3f(*[v * s for v, s in zip(cube_vertices[index], size)])
+        x += 1
     glEnd()
     glLoadIdentity()
 
@@ -61,4 +77,6 @@ def display_func():
 
 
 if __name__ == "__main__":
-    Launcher(display_func, (w, h)).loop()
+    launcher = Launcher(display_func, (w, h))
+    # enable_lighting()
+    launcher.loop()

@@ -14,10 +14,10 @@ def square(size=(100, 100)):
 
     glColor3f(0.25, 0.5, 0.75)
     glBegin(GL_QUADS)
-    glVertex2f(0, 0)
-    glVertex2f(0, size[1])
-    glVertex2f(size[0], size[1])
     glVertex2f(size[0], 0)
+    glVertex2f(size[0], size[1])
+    glVertex2f(0, size[1])
+    glVertex2f(0, 0)
     glEnd()
     glLoadIdentity()
 
@@ -40,8 +40,8 @@ def triangle(size=(100, 100)):
     glColor3f(0.8, 0, 0.25)
     glBegin(GL_TRIANGLES)
     glVertex2f(0, 0)
-    glVertex2f(size[0] // 2, size[1])
     glVertex2f(size[0], 0)
+    glVertex2f(size[0] // 2, size[1])
     glEnd()
     glLoadIdentity()
 

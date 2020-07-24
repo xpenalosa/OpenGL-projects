@@ -6,10 +6,10 @@ w, h = 500, 500
 
 def square():
     glBegin(GL_QUADS)
-    glVertex2f(w / 2, w / 2)
-    glVertex2f(w / 2, w / 3)
-    glVertex2f(w / 3, w / 3)
     glVertex2f(w / 3, w / 2)
+    glVertex2f(w / 3, w / 3)
+    glVertex2f(w / 2, w / 3)
+    glVertex2f(w / 2, w / 2)
     glEnd()
 
 

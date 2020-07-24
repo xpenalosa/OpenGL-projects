@@ -10,6 +10,8 @@ class Launcher:
         glutInitWindowSize(*win_size)
         glutInitWindowPosition(0, 0)
         glutCreateWindow("OpenGL Coding Practice")
+        glEnable(GL_CULL_FACE)
+        glCullFace(GL_BACK)
         self.func = display_function
 
     def display_func(self):
