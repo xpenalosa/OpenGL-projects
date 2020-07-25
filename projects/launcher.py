@@ -12,6 +12,7 @@ class Launcher:
         glutCreateWindow("OpenGL Coding Practice")
         glEnable(GL_CULL_FACE)
         glCullFace(GL_BACK)
+        glEnable(GL_TEXTURE_2D)
         self.func = display_function
 
     def display_func(self):
